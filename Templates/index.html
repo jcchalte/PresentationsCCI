@@ -1,0 +1,656 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <style type="text/css">
+        .reveal h1, h2, h3, h4, h5 {
+            text-align: center;
+        }
+
+        .reveal section {
+            text-align: left;
+        }
+
+        .reveal pre {
+            width: 97%;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Farmeos.Core</h1>
+            <h3>Préalables techniques</h3>
+        </section>
+        <section>
+            <section>
+                <h1>GIT</h1>
+            </section>
+            <section>
+                <h2>Repository local</h2>
+                <ul>
+                    <li>Contrôle de code source décentralisé</li>
+                    <li>Chaque repository est par nature indépendant</li>
+                </ul>
+                <pre><code>Git Bash</code></pre>
+            </section>
+            <section>
+                <h2>Initialisation</h2>
+                <pre><code>git init</code></pre>
+                <pre><code>git clone https://github.com/steeve/france.code-civil </code></pre>
+            </section>
+            <section>
+                <h2>Commandes pratiques</h2>
+                <pre><code data-noescape>git <em>macommande</em> <b>-h</b></code></pre>
+                <pre><code data-noescape>git <b>status</b></code></pre>
+                <pre><code data-noescape>git <b>add</b> .</code></pre>
+                <pre><code data-noescape>git <b>commit</b> -a -m '...'</code></pre>
+                <pre><code data-noescape>git <b>reset</b> HEAD --hard</code></pre>
+            </section>
+            <section>
+                <h2>Branches</h2>
+                <ul>
+                    <li>Autant de branches que nécessaire !</li>
+                    <li>
+                        <em>Une branche par fonctionnalité</em>
+
+                    </li>
+                </ul>
+                <pre><code data-noescape>git <b>checkout</b> -b <em>myfeature</em> <em>develop</em></code></pre>
+                <ul>
+                    <li>
+                        Merge :
+
+                    </li>
+                </ul>
+                <pre><code data-noescape>git <b>merge</b> --no-ff <em>myfeature</em></code></pre>
+                <pre><code data-noescape>git <b>branch</b> -d <em>myfeature</em></code></pre>
+                <ul>
+                    <li>
+                        Stash :
+                    </li>
+                </ul>
+                <pre><code data-noescape>git <b>stash</b></code></pre>
+                <pre><code data-noescape>git <b>stash</b> <b>apply</b></code></pre>
+            </section>
+            <section>
+                <h2>Notre organisation</h2>
+                <a href="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</a>
+            </section>
+            <section>
+                <h2>Remotes</h2>
+                <ul>
+                    <li>Les branches sont locales mais peuvent être liées (<em>upstream</em>) à des branches distantes
+                    </li>
+                    <li>
+                        Les branches distantes font partie d'un <b>remote</b>
+
+                    </li>
+                </ul>
+                <pre><code data-noescape>git <b>remote</b> -v</code></pre>
+                <ul>
+                    <li>Un remote par défaut au clône : <b>origin</b></li>
+                    <li>
+                        Commandes :
+
+                    </li>
+                </ul>
+                <pre><code data-noescape>git <b>fetch</b> <em>[origin]</em></code></pre>
+                <pre><code data-noescape>git <b>pull</b> <em>[origin]</em></code></pre>
+                <pre><code data-noescape>git <b>push</b> <em>[origin]</em></code></pre>
+            </section>
+            <section>
+                <h2>Gitignore</h2>
+                <ul>
+                    <li>Fichier d'exclusion</li>
+                    <li>A la racine du répertoire github ou dans chacun des répertoires
+
+                    </li>
+                </ul>
+                <pre><code>.gitignore</code></pre>
+                <ul>
+                    <li>Contient une liste d'exclusion</li>
+                </ul>
+                <pre><code>/.vs
+/packages
+/MonProjet/bin
+/MonProjet/obj</code></pre>
+            </section>
+
+            <section>
+                <h2>Conseils</h2>
+                <ul>
+                    <li>Une branche par développement</li>
+                    <li>Ne pas utiliser VS, ou n'utiliser que lui</li>
+                    <li><code>git add .</code> avant tout commit/stash</li>
+                    <li><code>git commit</code> (ou <code>stash</code>) avant tout checkout</li>
+                    <li><code>git status</code> vide avant tout pull/push</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>Paket</h1>
+            </section>
+            <section>
+                <h2>Définition des dépendances</h2>
+                <ul>
+                    <li>
+                        Un fichier de dépendance par solution
+                        <pre><code>paket.dependencies</code></pre>
+                    </li>
+                    <li>Liste les dépendances de la solution, les règles sur les versions, et différents paramètres de
+                        solution
+                    </li>
+                    <li>Uniquement le niveau le plus haut</li>
+                    <li>Références nuget et/ou github</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Référence des dépendances</h2>
+                <p>Par projet</p>
+                <pre><code>paket.referencies</code></pre>
+                <p>Liste les références du projet courant dans la liste des dépendances possibles</p>
+            </section>
+            <section>
+                <h2>Installation</h2>
+                <pre><code data-noescape>.\paket restore --redirects</code></pre>
+                <ul>
+                    <li>Télécharge les packages du fichier lock dans <code>.\package</code></li>
+                </ul>
+                <pre><code data-noescape>.\paket install --redirects</code></pre>
+                <ul>
+                    <li><em>Si palet.dependencies modifié, </em>Calcule l'arbre de dépendance et créé le fichier <code>paket.lock</code>
+                    </li>
+                    <li>Télécharge les packages du fichier lock dans <code>.\Packages</code></li>
+                    <li>Installe les nouvelles références dans les projets</li>
+                </ul>
+                <pre><code data-noescape>.\paket why <em>EntityFramework</em></code></pre>
+            </section>
+            <section>
+                <h2>Mise à jour</h2>
+                <pre><code data-noescape>.\paket <b>outdated</b></code></pre>
+                <pre><code data-noescape>.\paket update EntityFramework</code></pre>
+                <ul>
+                    <li>Mets à jour le fichier <code>paket.lock</code></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Packaging</h2>
+                <ul>
+                    <li>Gestion intégrée de la génération de package</li>
+                    <li>Par projet à générer, un fichier <b><code>monProjet.nuspec</code></b></li>
+                    <li>Fichier XML contenant les options de génération du <code>.nupkg</code></li>
+                </ul>
+                <pre><code data-noescape>.\paket <b>pack</b> -v <em>1.3.11</em> <em>C:\temp</em></code></pre>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>Injection de dépendances</h1>
+            </section>
+            <section>
+                <h2>Fonctionnement</h2>
+                <h4>Un service provider sous stéroïde</h4>
+                <ul>
+                    <li>Un composant logiciel nécessite des dépendances vers d'autres composants lors de son exécution
+                    </li>
+                    <li>Un framework d'injection de dépendance lui injecte une implémentation à l'exécution (<b>push</b>)
+                    </li>
+                    <li>La récupération d'une dépendance à la main par le développeur (<b>pull</b>) reste possible</li>
+                </ul>
+                <p>
+                    Dans notre cas : <b>Autofac</b>
+                </p>
+            </section>
+
+            <section>
+                <h2>Principes de développement</h2>
+                <p>3 étapes :</p>
+                <ul>
+                    <li>Développement</li>
+                    <li>Construction de l'arbre de développement (<b>Build</b>)</li>
+                    <li>Utilisation</li>
+                </ul>
+            </section>
+
+
+            <section>
+                <h2>
+                    Développement
+                </h2>
+                <p>Développement classique :</p>
+                <ul>
+                    <li>Séparation des concepts</li>
+                    <li>Déclaration / Implémentation</li>
+                    <li>Interface / Classe</li>
+                    <li>Commencer par définir les interfaces !</li>
+                    <li><em>n</em> projets séparés pour limiter la dépendance par conception</li>
+                </ul>
+
+            </section>
+            <section>
+                <h2>
+                    Construction de l'arbre
+                </h2>
+                <p>
+                    <em>Une seule fois</em>, enregistrement des implémentations
+                </p>
+                <pre><code>builder.RegisterType&lt;...&gt;()</code></pre>
+                <pre><code>... AsItself(); ... As&lt;IMonInterface&gt;(); ... AsImplementedInterfaces();</code></pre>
+                <pre><code>builder.RegisterInstance(monInstance)</code></pre>
+                <pre><code>builder.RegisterType(...)</code></pre>
+                <pre><code>builder.Register(c=>{...});</code></pre>
+            </section>
+            <section>
+                <h2>Lifetime scope (1/2)</h2>
+                <ul>
+                    <li>Toute résolution est faite dans un scope</li>
+                    <li>Exemple : scope global, scope par requête etc.</li>
+                    <li><b>Si A est créé dans un scope et nécessite un B alors B sera créé dans ce scope</b></li>
+                    <li>Possibilité de verrouiller l'usage à l'enregistrement</li>
+                </ul>
+                <pre><code>builder.RegisterType(...).SingleInstance()</code></pre>
+                <pre><code>SingleInstance(),InstancePerLifetimeScope(), InstancePerDependency()...</code></pre>
+                <pre><code>InstancePerRequest()</code></pre>
+            </section>
+            <section>
+                <h2>Lifetime scope (2/2)</h2>
+                <small>
+                    <ul>
+                        <li>Exemple :
+                            <ul>
+                                <li>Service IUserService qui gère la mise en place de la BDD des utilisateurs (scope
+                                    global)
+                                </li>
+                                <li>La classe "Application" en dépend pour créer le contexte au démarrage</li>
+                                <li>Plus tard, on rajoute la gestion de l'authentification dans IUserService qui a
+                                    besoin d'un service de gestion de la requête HTTP courante
+                                </li>
+                                <li>l'Authentification doit alors être dans un scope local de requête, donc IUserService
+                                    doit l'être
+                                </li>
+                                <li><b>=&gt; Incohérence =&gt; Crash !</b></li>
+                            </ul>
+                        </li>
+                        <li>Conséquences : il faut bien séparer les responsabilités, bien réfléchir au scope à
+                            l'enregistrement et à l'usage
+                        </li>
+                    </ul>
+                </small>
+            </section>
+            <section>
+                <h2>Utilisation</h2>
+                <h4>Push</h4>
+                <p>Par constructeur</p>
+                <pre><code data-trim data-noescape class="csharp">
+public class UserService : IUserService{
+    private readonly IRequeteCouranteService requeteCouranteService;
+
+    public UserService(IRequeteCouranteService requeteCouranteService){
+        this.requeteCouranteService = requeteCouranteService;
+    }
+
+    public bool IsAuthenticated(){
+        return requeteCouranteService.IsASPIdentityAuthenticated();
+    }
+}
+...
+DependencyInjection.Builder.Register&lt;UserService&gt;.As&lt;IUserService&gt;();
+</code></pre>
+            </section>
+            <section>
+                <h2>Utilisation</h2>
+                <h4>Push</h4>
+                <p>Par propriété</p>
+                <pre><code data-trim data-noescape class="csharp">
+public class UserService : IUserService{
+    public IRequeteCouranteService RequeteCouranteService {get; set;}
+
+    public UserService(){
+
+    }
+
+    public bool IsAuthenticated(){
+        return requeteCouranteService.IsASPIdentityAuthenticated();
+    }
+}
+...
+builder.Register&lt;UserService&gt;.As&lt;IUserService&gt;().PropertiesAutowired();
+builder.Register&lt;UserService&gt;.As&lt;IUserService&gt;().WithProperty("PropertyName", propertyValue);
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Utilisation</h2>
+                <h4>Pull</h4>
+                <ul>
+                    <li>Uniquement dans le scope courant !</li>
+                    <li>Limiter les usages, car moins lisible et cache probablement des soucis</li>
+                </ul>
+                <pre><code data-trim data-noescape class="csharp">
+public class UserService : IUserService{
+    private readonly ILifetimeScope scope;
+
+    public UserService(ILifetimeScope scope){
+        this.scope = scope;
+    }
+
+    public bool IsAuthenticated(){
+        IRequeteCouranteService requeteCouranteService =
+            scope.Resolve&lt;IRequeteCouranteService&gt;();
+
+        return requeteCouranteService.IsASPIdentityAuthenticated();
+    }
+}
+</code></pre>
+            </section>
+            <section>
+                <h2>Module Autofac</h2>
+                <ul>
+                    <li>Hérite de <b>Autofac.Module</b></li>
+                    <li>Expose une méthode Load appelée pendant l'étape de construction de l'arbre de dépendance via
+                        <code>builder.RegisterModule();</code></li>
+                    <li>Enregistre un ensemble d'implémentations liées (ex. tous les services d'une DLL)</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>Architecture applicative distribuée</h1>
+            </section>
+            <section>
+                <h2>Définition</h2>
+                <p>Une architecture distribuée consiste en la mise en place d'un ensemble de programmes communiquants
+                    entre eux ne s'exécutant pas au même endroit ou sur la même machine</p>
+                <p>"Inverse" d'une architecture centralisée</p>
+            </section>
+            <section>
+                <h2>Besoins</h2>
+                <ul>
+                    <li>Environnement logiciel complexe</li>
+                    <li>Développement long</li>
+                    <li>Equipe(s) disparate(s)</li>
+                    <li>...</li>
+                </ul>
+            </section>
+            <!-- Architecture Monolitique -->
+            <section>
+                <h2>Architecture monolitique</h2>
+                <h3>Principes</h3>
+                <ul>
+                    <li>Un seul projet central</li>
+                    <li>Nombre limité de déploiement</li>
+                    <li>Réutilisabilité par <b>partage de code</b></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Architecture monolitique</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Simplicité d'apprentissage/développement</li>
+                    <li>Simplicité de gestion</li>
+                    <li>Simplicité de cohérence</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Architecture monolitique</h2>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Trop gros donc...</li>
+                    <li>Lourdeurs au développement (F/T/O)</li>
+                    <li>Rigidité au changement (F/T/O)</li>
+                    <li>Réutilisation limitée (F/T)</li>
+                    <li>Peu en accord avec les besoins étendus (internes, externes, web, extranet etc.)</li>
+                </ul>
+            </section>
+
+            <!-- Architecture microservice -->
+            <section>
+                <h2>Architecture microservice</h2>
+                <h3>Principes</h3>
+                <ul>
+                    <li>
+                        Multitude de projets séparés
+                        <ul>
+                            <li>Techniquement</li>
+                            <li>Fonctionnellement</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Communication entre projets
+                        <ul>
+                            <li>Webservice</li>
+                            <li>Bus de données</li>
+                            <li>etc.</li>
+                        </ul>
+                    </li>
+                    <li>Réutilisabilité par <b>déploiement</b></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Architecture microservice</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Simplicitié d'apprentissage/développement</li>
+                    <li>Développement plus aisé
+                    <ul>
+                        <li>Chaque composant étant un projet séparé</li>
+                    </ul></li>
+
+                    <li>Clarification des responsabilités</li>
+                    <li>Souplesse au changement (F/T)</li>
+                    <li><b>Protection de l'implémentation</b></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Architecture microservice</h2>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Complexité de gestion</li>
+                    <li>Complexité expontielle de cohérence</li>
+                    <li>Complexificationdu dévelopement</li>
+                </ul>
+            </section>
+
+
+            <!-- Architecture hybride -->
+            <section>
+                <h2>Architecture hybride</h2>
+                <h3>Principes</h3>
+                <ul>
+                    <li>
+                        Mise en place d'un framework de développement léger
+                    </li>
+                    <li>
+                        Dévelopement de composants à responsabilité limitée
+                        <ul>
+                            <li>Technique</li>
+                            <li>Fonctionnelle</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Lancement par configuration
+                    </li>
+                    <li>
+                        Réutilisabilité hybride (partage de code et/ou déploiement)
+                        <ul>
+                            <li>Plusieurs configurations différentes (microservice)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Architecture hybride</h2>
+                <h3>Avantages</h3>
+                <ul>
+                    <li>Les avantages du microservice (responsabilité, développement léger etc.)</li>
+                    <li>Meilleure gestion de la cohérence (mais ça reste complexe par définition)</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Architecture hybride</h2>
+                <h3>Inconvénients</h3>
+                <ul>
+                    <li>Complexité de gestion (- que microservice)</li>
+                    <li>Complexité du développement (relative)</li>
+                    <li>Complexité de déploiement
+                        <ul>
+                            <li>Automatisation</li>
+                        </ul>
+                    </li>
+                    <li>Nécessite finesse dans le développement</li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+
+        ],
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Set default timing of 2 minutes per slide
+        defaultTiming: 0,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autolaying embedded media (video/audio/iframe)
+        // - null: Media will only autoplay if data-autoplay is present
+        // - true: All media will autoplay, regardless of individual setting
+        // - false: No media will autoplay, regardless of individual setting
+        autoPlayMedia: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: Reveal.navigateNext,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Hides the address bar on mobile devices
+        hideAddressBar: true,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Parallax background image
+        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+        // Parallax background size
+        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+        // Number of pixels to move the parallax background per slide
+        // - Calculated automatically unless specified
+        // - Set to 0 to disable movement along an axis
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        width: '90%',
+        height: '100%'
+    });
+</script>
+</body>
+</html>

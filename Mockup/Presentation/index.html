@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <style type="text/css">
+        .reveal h1, h2, h3, h4, h5 {
+            text-align: center;
+        }
+
+        .reveal section {
+            text-align: left;
+        }
+
+        .reveal pre {
+            width: 97%;
+        }
+
+        .reveal section > ul {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Maquette informatique</h1>
+        </section>
+        <section>
+            <section>
+                <h1>Présentation</h1>
+                <ul>
+                    <li>Jean-Christophe Chalté</li>
+                    <li>Développeur depuis 8 ans</li>
+                    <li>Consultant indépendant depuis 4 ans</li>
+                    <li>Contacts :
+                        <ul>
+                            <li>Mail : jc.chalte@processis.fr</li>
+                            <li><a href="http://github.com/jcchalte">http://github.com/jcchalte</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h1>Cours</h1>
+                <ul>
+                    <li>Maquettage</li>
+                    <li>SQL Server</li>
+                    <li>Technologies C#/Asp.Net</li>
+                    <li>Jeu de tests des programmes</li>
+                    <li>Projet de développement</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Déroulement</h1>
+                <ul>
+                    <li>Un peu de théorie</li>
+                    <li>Pas mal de pratique</li>
+                    <li>Sujet de réflexion entre cours</li>
+                    <li>Tour de table</li>
+                    <li>Projet final
+                        <ul>
+                            <li>Seule notation de tous les cours</li>
+                            <li>Projet important en investissement temps</li>
+                            <li>Prenez de l'avance !</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h1>Maquettage</h1>
+                <ul>
+                    <li class="fragment">En faire moins ? mieux ?</li>
+                    <li class="fragment">Laisser faire les autres...</li>
+                    <li class="fragment">Moins s'embêter ?</li>
+                </ul>
+                <blockquote class="fragment">&ldquo;Finalement c'est un peu ça le but dans la vie nan? Réussir à rien
+                    foutre...&rdquo;
+                </blockquote>
+
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>GIT</h1>
+                <h3>ça fait le café...</h3>
+            </section>
+            <section>
+                <h1>Système de gestion de version</h1>
+                <ul>
+                    <li>Concurrent Versions System : CVS</li>
+                    <li>Git, SVN, CVS, Perforce, TFS...</li>
+                    <li>Gère plusieurs problématiques
+                        <ul>
+                            <li class="fragment">Versioning
+                                <blockquote class="fragment">&ldquo;Comment c'était hier soir ? ça marchait à ce moment
+                                    là...&rdquo;
+                                </blockquote>
+                                <blockquote class="fragment">&ldquo;Pourquoi j'ai fait ça il y a 3 ans ?&rdquo;
+                                </blockquote>
+                                <blockquote class="fragment">&ldquo;Arrête tout, c'est ultra urgent !&rdquo; - Le
+                                    marketing
+                                </blockquote>
+                            </li>
+                            <li class="fragment">
+                                Concurrent
+                                <blockquote class="fragment">&ldquo;Qui a la dernière version ?&rdquo;</blockquote>
+                                <blockquote class="fragment">&ldquo;Quel est le c** qui a fait ça ?&rdquo;</blockquote>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Repository local</h2>
+                <ul>
+                    <li>Contrôle de code source décentralisé</li>
+                    <li>Se base sur le système de fichier de l'OS</li>
+                    <li>Chaque repository est par nature indépendant</li>
+                    <li>Un repository : un dossier sur votre PC</li>
+                    <li>Se manipule en ligne de commande (++) ou via des logiciels adaptés</li>
+                </ul>
+                <pre><code>git Bash / git CMD / Tortoise Git</code></pre>
+            </section>
+            <section>
+                <h2>Initialisation</h2>
+                <ul>
+                    <li>Créer un repository vide :
+                        <ul>
+                            <li><i> Dans un répertoire vierge</i></li>
+                        </ul>
+                        <pre><code>git init</code></pre>
+                    </li>
+                    <li>
+                        Partir d'un repository existant
+                        <ul>
+                            <li><i> Créera un sous-dossier</i></li>
+                        </ul>
+                        <pre><code>git clone https://github.com/jcchalte/PresentationsCCI.git</code></pre>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Commandes pratiques</h2>
+                <pre><code data-noescape>git</code></pre>
+                <pre><code data-noescape>git <em>macommande</em> <b>-h</b></code></pre>
+                <pre><code data-noescape>git <em>macommande</em> <b>--help</b></code></pre>
+                <pre><code data-noescape>git <b>status</b></code></pre>
+                <pre><code data-noescape>git <b>add</b> .</code></pre>
+                <pre><code data-noescape>git <b>commit</b> -a -m '...'</code></pre>
+                <pre><code data-noescape>git <b>reset</b> --hard</code></pre>
+            </section>
+
+
+            <section>
+                <h1>Github</h1>
+                <ul>
+                    <li>Service en ligne gratuit (public) ou payant (privé)</li>
+                    <li>Création de repositories git</li>
+                    <li>Gestion d'outils de suivi de projet
+                        <ul>
+                            <li>Bug tracking</li>
+                            <li>Code reviews</li>
+                            <li>Droits d'accès etc.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>Manipulation de repository distant</h1>
+                <pre><code data-noescape>git push</code></pre>
+                <pre><code data-noescape>git fetch</code></pre>
+                <pre><code data-noescape>git pull</code></pre>
+                <pre><code data-noescape>git remote -v</code></pre>
+            </section>
+
+            <section>
+                <h1>Travail collaboratif 1/2</h1>
+                <ul>
+                    <li>Dépôt/Récupération d'un repository commun (souvent en ligne)</li>
+                    <li>Lors de la récupération, des conflits peuvent apparaitre</li>
+                    <li>Conflits
+                        <ul>
+                            <li>ex : modifications d'une même ligne d'un même fichier</li>
+                            <li>Utilisez TortoiseGIT pour gérer les conflits</li>
+                            <li>Complexe à gérer</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h1>Travail collaboratif 2/2</h1>
+                <ul>
+                    <li>Commitez souvent !</li>
+                    <li>Effectuez un dépôt lorsqu'une fonctionnalité est terminée
+                        <ul>
+                            <li>Peut contenir plusieurs commits</li>
+                        </ul>
+                    </li>
+                    <li>Séparez bien le travail/les fichiers</li>
+                    <li>Utilisez des branches</li>
+                    <li>Persévérez dans la gestion des conflits</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Aller plus loin</h1>
+                <ul>
+                    <li>Laissez passer la nuit :)</li>
+                    <li>Exclusion de fichiers : <a href="http://bit.ly/CCI-gitignore">http://bit.ly/CCI-gitignore</a></li>
+                    <li>Remise de fichier : <a href="http://bit.ly/Git-remisage">http://bit.ly/Git-remisage</a></li>
+                    <li>Un cours openClassRoom sur le sujet qui ira très vite : <a href="http://bit.ly/OC-git">http://bit.ly/OC-git</a></li>
+                </ul>
+            </section>
+
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+
+        ],
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Set default timing of 2 minutes per slide
+        defaultTiming: 0,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autolaying embedded media (video/audio/iframe)
+        // - null: Media will only autoplay if data-autoplay is present
+        // - true: All media will autoplay, regardless of individual setting
+        // - false: No media will autoplay, regardless of individual setting
+        autoPlayMedia: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: Reveal.navigateNext,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // Hides the address bar on mobile devices
+        hideAddressBar: true,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Parallax background image
+        parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+        // Parallax background size
+        parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+        // Number of pixels to move the parallax background per slide
+        // - Calculated automatically unless specified
+        // - Set to 0 to disable movement along an axis
+        parallaxBackgroundHorizontal: null,
+        parallaxBackgroundVertical: null,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        width: '90%',
+        height: '100%'
+    });
+</script>
+</body>
+</html>
